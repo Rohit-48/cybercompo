@@ -328,7 +328,7 @@ import { CyberCard } from '@cyberpunk-ui/react'
                   Contributing
                 </h2>
                 <p className="text-text-muted mb-4 leading-relaxed">
-                  We welcome contributions! Here's how to get started:
+                  We welcome contributions! Here&apos;s how to get started:
                 </p>
                 <CodeBlock
                   code={`# Clone the repository

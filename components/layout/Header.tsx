@@ -25,17 +25,19 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
+    const timeoutId = window.setTimeout(() => {
+      setMobileOpen(false);
+    }, 0);
+    return () => window.clearTimeout(timeoutId);
   }, [pathname]);
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 h-16 bg-white border-b transition-shadow duration-200 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 h-16 bg-white border-b transition-shadow duration-200 ${scrolled
             ? "border-border shadow-[0_2px_4px_rgba(0,0,0,0.08)]"
             : "border-transparent"
-        }`}
+          }`}
       >
         <div className="mx-auto flex h-full max-w-[1400px] items-center justify-between px-6">
           {/* Logo */}
@@ -57,11 +59,10 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 text-sm font-medium transition-colors duration-150 ${
-                    isActive
+                  className={`px-4 py-2 text-sm font-medium transition-colors duration-150 ${isActive
                       ? "text-text-primary"
                       : "text-text-muted hover:text-text-primary"
-                  }`}
+                    }`}
                 >
                   {link.label}
                   {isActive && (
@@ -135,11 +136,11 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-4 py-3 text-base font-medium transition-colors ${
-                      isActive
+                    onClick={() => setMobileOpen(false)}
+                    className={`px-4 py-3 text-base font-medium transition-colors ${isActive
                         ? "text-text-primary border-l-3 border-cyan-glow bg-cyan-hover"
                         : "text-text-muted hover:text-text-primary hover:bg-gray-50"
-                    }`}
+                      }`}
                   >
                     {link.label}
                   </Link>

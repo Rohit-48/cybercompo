@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Search, ChevronDown, ChevronRight } from "lucide-react";
 
@@ -27,7 +25,6 @@ export default function Sidebar({
   searchQuery = "",
   onSearchChange,
 }: SidebarProps) {
-  const pathname = usePathname();
   const [expanded, setExpanded] = useState<Record<string, boolean>>({
     usable: true,
     experimental: true,

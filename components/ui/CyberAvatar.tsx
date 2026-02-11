@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 interface CyberAvatarProps {
   src?: string;
   alt?: string;
@@ -20,13 +22,24 @@ export default function CyberAvatar({
     md: "w-10 h-10 text-sm",
     lg: "w-14 h-14 text-base",
   };
+  const imageSizes = {
+    sm: "32px",
+    md: "40px",
+    lg: "56px",
+  };
 
   return (
     <div
       className={`relative inline-flex items-center justify-center bg-gray-200 text-text-muted font-semibold overflow-hidden clip-btn ${sizes[size]} ${className}`}
     >
       {src ? (
-        <img src={src} alt={alt} className="w-full h-full object-cover" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={imageSizes[size]}
+          className="object-cover"
+        />
       ) : (
         <span>{initials || "?"}</span>
       )}

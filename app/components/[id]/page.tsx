@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useParams, notFound } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -15,7 +15,7 @@ import { getComponent, components, categories } from "@/lib/componentData";
 
 export default function ComponentDetailPage() {
   const params = useParams();
-  const id = params.id as string;
+  const id = (Array.isArray(params.id) ? params.id[0] : params.id) ?? "";
   const component = getComponent(id);
 
   const [activeCategory, setActiveCategory] = useState("all");

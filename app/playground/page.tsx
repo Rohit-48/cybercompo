@@ -2,18 +2,13 @@
 
 import { useState, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Search, Copy, Check, RotateCcw, Download } from "lucide-react";
+import { Search, Copy, Check, RotateCcw } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import ComponentPreview from "@/components/showcase/ComponentPreview";
 import CodeBlock from "@/components/showcase/CodeBlock";
 import { components } from "@/lib/componentData";
 import GridBg from "@/components/layout/gridbg";
-
-interface SelectedComponent {
-  id: string;
-  name: string;
-}
+import { generatePlaygroundCode, type SelectedComponent } from "@/lib/playground";
 
 export default function PlaygroundPage() {
   const [selectedComponents, setSelectedComponents] = useState<
@@ -40,33 +35,10 @@ export default function PlaygroundPage() {
     });
   }, []);
 
-  const generatedCode = useMemo(() => {
-    if (selectedComponents.length === 0) return "// Select components to generate code";
-
-    const imports = selectedComponents
-      .map(
-        (c) =>
-          `import ${c.name.replace(/\s+/g, "")} from '@/components/ui/${c.name.replace(/\s+/g, "")}'`,
-      )
-      .join("\n");
-
-    const jsx = selectedComponents
-      .map((c) => {
-        const comp = components.find((x) => x.id === c.id);
-        return comp?.code || `<${c.name.replace(/\s+/g, "")} />`;
-      })
-      .join("\n\n  ");
-
-    return `${imports}
-
-export default function MyPage() {
-  return (
-    <div className="flex flex-col gap-6 p-8">
-      ${jsx}
-    </div>
-  )
-}`;
-  }, [selectedComponents]);
+  const generatedCode = useMemo(
+    () => generatePlaygroundCode(selectedComponents),
+    [selectedComponents],
+  );
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(generatedCode);
@@ -101,7 +73,7 @@ export default function MyPage() {
                   </div>
                 </div>
                 <GridBg />
-                <div className="flex-1 bg-whitep-8 overflow-auto">
+                <div className="flex-1 bg-white p-8 overflow-auto">
                   {selectedComponents.length === 0 ? (
                     <div className="h-full flex items-center justify-center">
                       <div className="text-center">
