@@ -14,6 +14,7 @@ import {
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { components } from "@/lib/componentData";
+import GridBg from "@/components/layout/gridbg";
 
 const categoryCards = [
   {
@@ -72,7 +73,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-16">
-        <div className="absolute inset-0 grid-bg" />
+        <GridBg />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

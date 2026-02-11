@@ -8,6 +8,7 @@ import Footer from "@/components/layout/Footer";
 import ComponentPreview from "@/components/showcase/ComponentPreview";
 import CodeBlock from "@/components/showcase/CodeBlock";
 import { components } from "@/lib/componentData";
+import GridBg from "@/components/layout/gridbg";
 
 interface SelectedComponent {
   id: string;
@@ -99,8 +100,8 @@ export default function MyPage() {
                     <span className="w-2.5 h-2.5 rounded-full bg-gray-300" />
                   </div>
                 </div>
-
-                <div className="flex-1 bg-white grid-bg p-8 overflow-auto">
+                <GridBg />
+                <div className="flex-1 bg-whitep-8 overflow-auto">
                   {selectedComponents.length === 0 ? (
                     <div className="h-full flex items-center justify-center">
                       <div className="text-center">
@@ -208,11 +209,10 @@ export default function MyPage() {
                   return (
                     <label
                       key={c.id}
-                      className={`flex items-center gap-3 px-3 py-2 text-sm cursor-pointer transition-colors rounded-sm ${
-                        isSelected
-                          ? "bg-cyan-hover text-text-primary"
-                          : "hover:bg-gray-50 text-text-muted"
-                      }`}
+                      className={`flex items-center gap-3 px-3 py-2 text-sm cursor-pointer transition-colors rounded-sm ${isSelected
+                        ? "bg-cyan-hover text-text-primary"
+                        : "hover:bg-gray-50 text-text-muted"
+                        }`}
                     >
                       <input
                         type="checkbox"

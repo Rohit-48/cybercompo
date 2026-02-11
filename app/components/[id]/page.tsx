@@ -128,11 +128,10 @@ export default function ComponentDetailPage() {
                         <button
                           key={v}
                           onClick={() => setSelectedVariant(v)}
-                          className={`px-4 py-1.5 text-sm font-medium clip-btn transition-all duration-150 ${
-                            selectedVariant === v
+                          className={`px-4 py-1.5 text-sm font-medium clip-btn transition-all duration-150 ${selectedVariant === v
                               ? "bg-text-primary text-white"
                               : "bg-white text-text-primary border border-border hover:bg-gray-50"
-                          }`}
+                            }`}
                         >
                           {v}
                         </button>
@@ -159,11 +158,10 @@ export default function ComponentDetailPage() {
                               onClick={() =>
                                 setCustomProps((p) => ({ ...p, size: s }))
                               }
-                              className={`px-3 py-1 text-xs font-medium clip-btn transition-all ${
-                                (customProps.size || "md") === s
+                              className={`px-3 py-1 text-xs font-medium clip-btn transition-all ${(customProps.size || "md") === s
                                   ? "bg-text-primary text-white"
                                   : "bg-gray-100 text-text-primary hover:bg-gray-200"
-                              }`}
+                                }`}
                             >
                               {s}
                             </button>
@@ -181,11 +179,10 @@ export default function ComponentDetailPage() {
                               loading: !p.loading,
                             }))
                           }
-                          className={`px-3 py-1 text-xs font-medium clip-btn transition-all ${
-                            customProps.loading
+                          className={`px-3 py-1 text-xs font-medium clip-btn transition-all ${customProps.loading
                               ? "bg-cyan-glow text-text-primary"
                               : "bg-gray-100 text-text-primary hover:bg-gray-200"
-                          }`}
+                            }`}
                         >
                           {customProps.loading ? "ON" : "OFF"}
                         </button>
@@ -201,11 +198,10 @@ export default function ComponentDetailPage() {
                               disabled: !p.disabled,
                             }))
                           }
-                          className={`px-3 py-1 text-xs font-medium clip-btn transition-all ${
-                            customProps.disabled
+                          className={`px-3 py-1 text-xs font-medium clip-btn transition-all ${customProps.disabled
                               ? "bg-cyan-glow text-text-primary"
                               : "bg-gray-100 text-text-primary hover:bg-gray-200"
-                          }`}
+                            }`}
                         >
                           {customProps.disabled ? "ON" : "OFF"}
                         </button>
